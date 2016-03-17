@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form>
+			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />        
+			
+			<p:separator/>
+            
+            <p:panelGrid columns="2">
+                <h:outputLabel for="documento" value="Documento" />
+                <p:inputText id="documento" value="#{estudianteManagerBean.documento}"></p:inputText>
+                
+                <h:outputLabel for="nombre" value="Nombre" />
+                <p:inputText id="nombre" value="#{estudianteManagerBean.nombre}"></p:inputText>
+                
+                <h:outputLabel for="apellido" value="Apellido" />
+                <p:inputText id="apellido" value="#{estudianteManagerBean.apellido}"></p:inputText>
+
+            </p:panelGrid>
+            <p:panel>
+                <p:commandButton id="agregaEst" value="Agregar" action="#{estudianteManagerBean.agregarEstudiante}" 
+                ajax="true" update="tablaEstudiantes"/>            
+            </p:panel>
+        </h:form>
+
+		<p:separator/>
+
+        <p:dataTable id="tablaEstudiantes" var="estudiante" value="#{estudianteManagerBean.coleccionEstudiantes}" style="width:60%" >
+        	<p:column headerText="Documento">
+        		<h:outputText value="#{estudiante.documento}" />
+        	</p:column>
+        	
+        	<p:column headerText="Nombre">
+        		<h:outputText value="#{estudiante.nombre}" />
+        	</p:column>
+
+        	<p:column headerText="Apellido">
+        		<h:outputText value="#{estudiante.apellido}" />
+        	</p:column>
+
+        	<p:column headerText="Fecha de nacimiento">
+        		<h:outputText value="#{estudiante.fecha_nacimiento}" />
+        	</p:column>
+        </p:dataTable>
+        
+    </h:body>
+</html>
